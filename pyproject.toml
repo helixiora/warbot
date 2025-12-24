@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "warbot"
+version = "0.1.0"
+description = "Warbot - CLI bot for world conflict awareness with streaming, tools, and risk guidance"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name = "Helixiora", email = "dev@helixiora.example" }
+]
+dependencies = [
+  "openai>=1.60.0",
+  "python-dotenv>=1.0.1",
+  "rich>=13.7.0",
+  "requests>=2.32.3",
+  "geopy>=2.4.1",
+  "beautifulsoup4>=4.12.0",
+  "lxml>=5.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0",
+  "pytest-cov>=5.0.0",
+  "black>=24.8.0",
+  "ruff>=0.6.0",
+  "mypy>=1.11.0",
+  "types-requests>=2.32.0",
+  "types-python-dateutil>=2.9.0",
+]
+
+[project.scripts]
+warbot = "warbot.__main__:main"
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "UP", "B", "S", "N", "ANN"]
+ignore = ["ANN101", "ANN102", "ANN401"]
+src = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = false
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+
